@@ -5,12 +5,13 @@ H = colorHist(C, 10);
 data = [H L];
 
 %% CNN work
+% path needed for MatConvNet's cnn_train
 addpath('matconvnet-1.0-beta25/examples'); % fix this for your setup; an environment variable might be good, not sure 
 % cnn_train wants images as a 4D array; resizing to NxN for ease of use
 N = 32;
 C2 = zeros(N,N,3,numel(C), 'single');
 for i = 1:numel(C)
-    C2(:,:,:,i) = im2single(rgb2gray(imresize(C{i}, [N N])));
+    C2(:,:,:,i) = im2single(imresize(C{i}, [N N]));
 end
 
 C2 = C2 - mean(C2, 4); % Want all the means
