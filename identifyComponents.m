@@ -23,8 +23,8 @@ classCount = size(LMap, 1);
 indices = ones(size(L));
 indices(1:uint32(numel(L) / 5)) = 2; % first 1/5th is validation set
 [net, stats] = train(C2, L, classCount, indices);
-
 % cnn_train generates figure showing error rates
+
 
 function [net, stats] = train(C, L, classCount, indices)
 opts.train.numEpochs = 75; % too many epochs results in overfitting
@@ -58,13 +58,10 @@ net.layers{6} = struct('type', 'softmaxloss');
 end
 
 
-% --------------------------------------------------------------------
 function [images, labels] = getBatch(imdb, batch, use_gpu)
-% --------------------------------------------------------------------
-% This is where we return a given set of images (and their labels) from
-% our imdb structure.
-% If the dataset was too large to fit in memory, getBatch could load images
-% from disk instead (with indexes given in 'batch').
+%GETBATCH return a given set of images (and their labels) from imdb
+%   If the dataset was too large to fit in memory, getBatch could load
+%   images from disk instead (with indexes given in 'batch').
 images = imdb{1}(:,:,:,batch);
 labels = imdb{2}(batch);
 
