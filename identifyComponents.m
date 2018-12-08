@@ -5,9 +5,9 @@ H = colorHist(C, 10);
 data = [H L];
 
 %% CNN work
-run matconvnet-1.0-beta25/matlab/vl_setupnn % fix this for your setup
+run /home/josh/src/matconvnet-1.0-beta25/matlab/vl_setupnn
 % path needed for MatConvNet's cnn_train
-addpath('matconvnet-1.0-beta25/examples'); % fix this for your setup; an environment variable might be good, not sure 
+addpath('/home/josh/src/matconvnet-1.0-beta25/examples')
 % cnn_train wants images as a 4D array; resizing them to NxN for ease of use
 N = 32;
 C2 = zeros(N,N,3,numel(C), 'single');
