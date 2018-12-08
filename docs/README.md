@@ -57,11 +57,38 @@ settled on the use of *open-source hardware* -- hardware designs that include
 all of the necessary design files (e.g., EAGLE source files). As a result, we
 decided on constructing a database using images of products from [Adafruit
 Industries](https://www.adafruit.com/), an open-source hardware company known
-for its support of electronic hobbyists. Adafruit offers the EAGLE source files
-for most of its internally-designed PCBs, allowing us to hand-label images of
-these PCBs with a high degree of accuracy.
+for its support of electronic hobbyists. Adafruit provides the EAGLE source
+files for most of its internally-designed PCBs, allowing us to hand-label images
+of these PCBs with a high degree of accuracy.
+
+We identified six components for classification: resistors (R), capacitors (C),
+inductors (H), diodes (D), LEDs (L), and integrated circuits (ICs). For each
+image in our dataset, we used [MATLAB's Image Labeler
+tool](https://www.mathworks.com/help/vision/ref/imagelabeler-app.html) to
+outline these components. The corresponding EAGLE PCB layout files served as our
+reference.  From the resulting `groundTruth` objects, we extracted bounding
+boxes and cropped each image to generate our actual dataset of component images
+and labels.
 
 ## Object Classification
+
+With our dataset generated, we moved onto the object classification problem.
+After researching the various methods available, we settled on testing two
+different approaches and comparing the accuracies. The first approach generated
+color histograms for each image and trained a variety of supervised classifiers
+using [MATLAB's Classification
+Learner](https://www.mathworks.com/help/stats/classificationlearner-app.html)
+tool. Specifically, this tool trains and scores the following types of learners
+in parallel:
+
+* Decision Trees
+* Linear and Quadratic Discriminant Analysis
+* Support Vector Machines
+* Nearest-neighbor Classifiers
+* Ensemble Classifiers
+
+[//] # (TODO: Josh, can you fill in here?)
+The second approach used convolutional neural networks.
 
 # Results
 
