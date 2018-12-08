@@ -1,7 +1,7 @@
 Visual analysis of the components on a printed circuit board (PCB) can provide
 additional security and quality assurance. For this reason, we decided to use
-computer vision techniques to classify PCB components by type, achieving around
-80% accuracy with the methodologies we tried.
+computer vision techniques to classify PCB components by type (resistor,
+capacitor, etc.), achieving around 80% accuracy with the methodologies we tried.
 
 ![Given picture and component bounding boxes, isolate components, and using CNN
 and other methods, classify!](figures/teaser.png)
