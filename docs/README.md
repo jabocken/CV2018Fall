@@ -87,7 +87,9 @@ tool](https://www.mathworks.com/help/vision/ref/imagelabeler-app.html) to
 outline these components. The corresponding EAGLE PCB layout files served as our
 reference.  From the resulting `groundTruth` objects, we extracted bounding
 boxes and cropped each image to generate our actual dataset of component images
-and labels.
+iand labels. Examples of the resulting images are shown below:
+
+![Example image from component extraction.](figures/component_samples.png)
 
 ## Object Classification
 
