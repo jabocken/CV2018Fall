@@ -1,6 +1,7 @@
 TODO: abstract
 
-
+![Given picture and component bounding boxes, isolate components, and using CNN
+and other methods, classify!](figures/teaser.png)
 
 # Introduction
 
