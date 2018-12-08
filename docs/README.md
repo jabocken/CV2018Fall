@@ -34,6 +34,10 @@ purposes for a number of reasons.
    realized that we would not be able to generate sufficiently accurate
    annotations on our own.
 
+![Example image from PCB DSLR Dataset. Note the large number of components, as
+well as the dust obscuring many of the
+components.](figures/pcb_dslr_example.jpg)
+
 Faced with these challenges, and with no other strong candidate datasets, we
 decided our best course of action involved generating our own dataset. We
 identified three criteria that needed to be met for our purposes:
@@ -58,8 +62,6 @@ for most of its internally-designed PCBs, allowing us to hand-label images of
 these PCBs with a high degree of accuracy.
 
 ## Object Classification
-
-
 
 # Results
 
