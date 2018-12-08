@@ -7,6 +7,19 @@ capacitor, etc.), achieving around 80% accuracy with the methodologies we tried.
 and other methods, classify!](figures/teaser.png)
 
 # Introduction
+[Recent events in the field of hardware security](https://www.bloomberg.com/news/features/2018-10-04/the-big-hack-how-china-used-a-tiny-chip-to-infiltrate-america-s-top-companies),
+[whether true or not](https://www.zdnet.com/article/super-micro-trashes-bloomberg-chip-hack-story-in-recent-customer-letter/),
+have shined light on the issue of ensuring hardware security in a world where
+supply chains are not necessarily secure. In that light, ensuring that the
+components on a PCB are only those that are supposed to be there can improve
+security guarantees and, more prosaically, be useful for quality-assurance
+purposes. For this reason, we investigated visual classification of the
+components on PCBs using photographs taken with standard cameras. Previous work
+in this area includes defect analysis
+[[1](https://ijarcsse.com/docs/papers/Volume_7/6_June2017/V7I6-0176.pdf),
+[2](https://research.ijcaonline.org/ncfaaiia/number2/ncfaaiia1014.pdf)]
+and identification of specific integrated circuits (ICs) for recycling purposes
+[[3](https://cvl.tuwien.ac.at/research/cvl-databases/pcb-dslr-dataset/)].
 
 # Methodology
 
