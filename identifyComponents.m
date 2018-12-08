@@ -19,31 +19,17 @@ C2 = C2 - mean(C2, 4); % Want all the means
 
 classCount = size(LMap, 1);
 
-n = numel(L);
-sectional = uint32(n / 5);
-last = sectional;
-first = 1;
-i = 1;
-count = 0;
+starts = [1 93 186 280 373]; % manual setup because the last bit wasn't a good size
+ends = [93 186 280 373 467];
+count = numel(starts);
 err = 0;
-lastIteration = false;
-while lastIteration == false
-    % want to terminate after last is n, but still execute that time
-    if last == n
-        lastIteration = true;
-    end
+for i = 1:count
+    rmdir data s % want each CNN to be fresh for the cross-validation
 
     indices = ones(size(L));
-    indices(first:last) = 2; % validation indices
+    indices(starts(i):ends(i)) = 2; % validation indices
     [~, stats] = train(C2, L, classCount, indices);
     err = err + stats.val(end).top1err;
-    count = count + 1;
-
-    first = last + 1;
-    last = last + sectional;
-    if last > n
-        last = n;
-    end
 end
 
 avgAccuracy = 1 - err / count %#ok<NOPTS>
