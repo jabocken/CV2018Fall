@@ -14,17 +14,17 @@ supply chains are not necessarily secure. In that light, ensuring that the
 components on a PCB are only those that are supposed to be there can improve
 security guarantees and, more prosaically, be useful for quality-assurance
 purposes. For this reason, we investigated visual classification of the
-components on PCBs using photographs taken with standard cameras. Previous work
+components on PCBs using photographs taken with standard cameras. Related work
 in this area includes defect analysis
-[[1](https://ijarcsse.com/docs/papers/Volume_7/6_June2017/V7I6-0176.pdf),
-[2](https://research.ijcaonline.org/ncfaaiia/number2/ncfaaiia1014.pdf)]
-and identification of specific integrated circuits (ICs) for recycling purposes
-[[3](https://cvl.tuwien.ac.at/research/cvl-databases/pcb-dslr-dataset/)].
+[[1](https://research.ijcaonline.org/ncfaaiia/number2/ncfaaiia1014.pdf)]
+and identification of specific PCBs for recycling purposes
+[[2](https://cvl.tuwien.ac.at/project/reclaim/)].
+Such work extends back to at least the 90s as well
+[[3](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.39.2668&rep=rep1&type=pdf)].
 
 # Methodology
 
 ## Dataset Generation
-
 Before we could perform any form of object classification, we needed to find or
 generate a dataset of PCB components. We first searched for existing datasets.
 The only candidate we found in our search was the [PCB DSLR
@@ -39,37 +39,36 @@ recycling-related applications."
 Unfortunately, we decided after some review that this would not suffice for our
 purposes for a number of reasons.
 
-*  First, the dataset only contains segmentation information and bounding boxes
-   for large integrated circuits (ICs), such as embedded processors and memory
-   controllers. We sought to identify a wider variety of components.
-*  Next, dust and debris obscure many of the components on the PCBs in these
-   images, a result of authors' use of PCBs from a recycling center. This
-   complicated our efforts to add our own segmentation information to the
-   images.
-*  Furthermore, the large size of each image (4928x3280~pixels), meant it would
-   be difficult to supplement the included labels with our own in a timely
-   fashion. 
-*  Finally, without detailed information about the design of the PCBs, we
-   realized that we would not be able to generate sufficiently accurate
-   annotations on our own.
+* First, the dataset only contains segmentation information and bounding boxes
+  for large integrated circuits (ICs), such as embedded processors and memory
+  controllers. We sought to identify a wider variety of components.
+* Next, dust and debris obscure many of the components on the PCBs in these
+  images, a result of authors' use of PCBs from a recycling center. This
+  complicated our efforts to add our own segmentation information to the
+  images.
+* Furthermore, the large size of each image (4928x3280~pixels), meant it would
+  be difficult to supplement the included labels with our own in a timely
+  fashion.
+* Finally, without detailed information about the design of the PCBs, we
+  realized that we would not be able to generate sufficiently accurate
+  annotations on our own.
 
-![Example image from PCB DSLR Dataset. Note the large number of components, as
-well as the dust obscuring many of the
-components.](figures/pcb_dslr_example.jpg)
+![Example image from the PCB DSLR Dataset with a large number of components as
+well as dust obscuring many of them.](figures/pcb_dslr_example.jpg)
 
 Faced with these challenges, and with no other strong candidate datasets, we
 decided our best course of action involved generating our own dataset. We
 identified three criteria that needed to be met for our purposes:
 
-*  First, the PCBs in the images needed to contain a variety of components,
-   including resistors, capacitors, diodes, inductors, LEDs, and ICs, but not in
-   such quantities that hand-labeling them required an unreasonable amount of
-   time.
-*  Next, each PCB needed to be clear of artifacts, whether visual (e.g.,
-   blurriness) or physical (e.g., dust).
-*  Finally, we needed access to a detailed listing of the components on each
-   PCB, including their locations on the board, to allow accurate labeling of
-   the ground truths for each image.
+* First, the PCBs in the images needed to contain a variety of components,
+  including resistors, capacitors, diodes, inductors, LEDs, and ICs, but not in
+  such quantities that hand-labeling them required an unreasonable amount of
+  time.
+* Next, each PCB needed to be clear of artifacts, whether visual (e.g.,
+  blurriness) or physical (e.g., dust).
+* Finally, we needed access to a detailed listing of the components on each
+  PCB, including their locations on the board, to allow accurate labeling of
+  the ground truths for each image.
 
 The third criterion in particular was a source of difficulty for us until we
 settled on the use of *open-source hardware* -- hardware designs that include
@@ -90,7 +89,6 @@ boxes and cropped each image to generate our actual dataset of component images
 and labels.
 
 ## Object Classification
-
 With our dataset generated, we moved onto the object classification problem.
 After researching the various methods available, we settled on testing two
 different approaches and comparing the accuracies. The first approach generated
@@ -106,13 +104,13 @@ in parallel:
 * Nearest-neighbor Classifiers
 * Ensemble Classifiers
 
-The second approach used convolutional neural networks.
+The second approach used convolutional neural networks (CNNs).
 
 # Results
 
-## Color histogram and k-nearest-neighbor search
+## Color Histogram and k-Nearest-Neighbor Search
 
-## Convolutional neural network (CNN)
+## Convolutional Neural Network
 The figure below shows training of a basic CNN with three convolutional layers
 separated by max-pooling layers and terminated with a soft-max-loss layer over
 75 epochs. We used four fifths of the component images, all resized to 32x32,
@@ -129,3 +127,15 @@ accuracy of 83.2% for the above-described CNN model.
 # Conclusion
 
 # References
+
+1. Bhardwaj, Sharat Chandra. “Machine vision algorithm for PCB parameters
+   inspection.” In *National Conference on Future Aspects of Artificial
+   intelligence in Industrial Automation (NCFAAIIA 2012), Proceedings published
+   by International Journal of Computer Applications®(IJCA)*, no. 2, pp. 20-24.
+   2012.
+2. Pramerdorfer C., Kampel M. “PCB Recognition Using Local Features for
+   Recycling Purposes”, *Proc. 10th International Conference on Computer Vision
+   Theory and Applications*, pp. 71-78, Berlin, Germany, March 2015.
+3. Moganti, Madhav, Fikret Ercal, Cihan H. Dagli, and Shou Tsunekawa. “Automatic
+   PCB inspection algorithms: a survey.” *Computer Vision and Image
+   Understanding 63*, no. 2 (1996): 287-313.
