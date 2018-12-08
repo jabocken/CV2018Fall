@@ -46,7 +46,7 @@ purposes for a number of reasons.
   images, a result of authors' use of PCBs from a recycling center. This
   complicated our efforts to add our own segmentation information to the
   images.
-* Furthermore, the large size of each image (4928x3280~pixels), meant it would
+* Furthermore, the large size of each image (4928x3280 pixels), meant it would
   be difficult to supplement the included labels with our own in a timely
   fashion.
 * Finally, without detailed information about the design of the PCBs, we
@@ -102,20 +102,28 @@ in parallel:
 * Linear and Quadratic Discriminant Analysis
 * Support Vector Machines
 * Nearest-neighbor Classifiers
-* Ensemble Classifiers
+* Ensemble Classifiers/
 
-The second approach used convolutional neural networks (CNNs).
+The second approach used a convolutional neural network (CNN) implemented with
+[MatConvNet](http://www.vlfeat.org/matconvnet/)
+[[4](https://arxiv.org/pdf/1412.4564.pdf)]. Deep neural networks such as CNNs
+have wide applications to many fields of research, computer vision included, and
+seemed a suitable choice for this project due to their current popularity in the
+CV community.
+
+The CNN used was a simple one, consisting of three convolutional layers
+separated by max-pooling layers and terminated by a soft-max-loss layer
+(for classification).
 
 # Results
 
 ## Color Histogram and k-Nearest-Neighbor Search
 
 ## Convolutional Neural Network
-The figure below shows training of a basic CNN with three convolutional layers
-separated by max-pooling layers and terminated with a soft-max-loss layer over
-75 epochs. We used four fifths of the component images, all resized to 32x32,
-for the training set and the remaining fifth as the validation set;
-in other words, this was one fold of a five-fold cross-validation.
+The figure below shows training of the CNN used over 75 epochs. We used four
+fifths of the component images, all resized to 32x32 and normalized on color
+values, for the training set and the remaining fifth as the validation set; in
+other words, this was one fold of a five-fold cross-validation.
 We chose 75 epochs as going beyond that seemed to result in overfitting on the
 training data (the objective function value for the validation set began
 increasing past that point as well as, to a lesser extent, the top-1 error).
@@ -139,3 +147,6 @@ accuracy of 83.2% for the above-described CNN model.
 3. Moganti, Madhav, Fikret Ercal, Cihan H. Dagli, and Shou Tsunekawa. “Automatic
    PCB inspection algorithms: a survey.” *Computer Vision and Image
    Understanding 63*, no. 2 (1996): 287-313.
+4. Vedaldi, Andrea, and Karel Lenc. “MatConvNet: Convolutional neural networks
+   for Matlab.” In *Proceedings of the 23rd ACM international conference on
+   Multimedia*, pp. 689-692. ACM, 2015.
