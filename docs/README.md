@@ -87,7 +87,6 @@ in parallel:
 * Nearest-neighbor Classifiers
 * Ensemble Classifiers
 
-[//] # (TODO: Josh, can you fill in here?)
 The second approach used convolutional neural networks.
 
 # Results
