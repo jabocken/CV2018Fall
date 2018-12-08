@@ -1,4 +1,7 @@
-TODO: abstract
+Visual analysis of the components on a printed circuit board (PCB) can provide
+additional security and quality assurance. For this reason, we decided to use
+computer vision techniques to classify PCB components by type, achieving around
+80% accuracy with the methodologies we tried.
 
 ![Given picture and component bounding boxes, isolate components, and using CNN
 and other methods, classify!](figures/teaser.png)
@@ -11,7 +14,7 @@ and other methods, classify!](figures/teaser.png)
 
 ## Color histogram and k-nearest-neighbor search
 
-## Convolutional neural network
+## Convolutional neural network (CNN)
 The figure below shows training of a basic CNN with three convolutional layers
 separated by max-pooling layers and terminated with a soft-max-loss layer over
 75 epochs. We used four fifths of the component images, all resized to 32x32,
