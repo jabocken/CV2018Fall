@@ -112,7 +112,42 @@ The second approach used convolutional neural networks.
 
 # Results
 
+For our dataset, we downloaded images and EAGLE source files for 25 different
+PCBs from Adafruit Industries (see above). Our final dataset contains 456
+images of components. The image files and `groundTruth` objects can be found
+[here](https://drive.google.com/file/d/1pnl0-c1Zyp0Ajidw2CLabZj_o_hSVzxi/view?usp=sharing);
+note that the name of each file corresponds to the product number at Adafruit.
+
 ## Color histogram and k-nearest-neighbor search
+
+We computed color histograms for each component by taking a histogram of each
+color channel (RGB). We used 10 bins for each color. As the number of pixels in
+each component image varies, we then normalized the histograms for each channel
+such that the sum of the 10-bin vector equals 1. Together, these gave us
+a feature vector 30 elements long. 
+
+We used these feature vectors to train a variety of different classifiers using
+MATLAB's Classification Learner tool. The tool was set to automatically perform
+5-fold cross-validation. The accuracy of the various classifiers is shown in the
+following table:
+
+Model Type | Model Subtype | Accuracy (%)
+-----------|---------------|---------
+SVM | Medium Gaussian | 86.0
+SVM | Quadratic | 85.5
+SVM | Cubic | 85.3
+KNN | Fine (K = 1) | 83.8
+SVM | Linear | 80.7
+KNN | Medium (K = 10) | 78.9
+Decision Tree | Fine (max 100 splits)| 74.6
+SVM | Coarse Gaussian | 73.7
+Decision Tree | Medium (max 20 splits) | 73.2
+Decision Tree | Coarse (max 4 splits) | 63.6
+SVM | Fine Gaussian | 50.2
+KNN | Coarse (K = 100) | 49.8
+
+In general, Support Vector Machines provided the highest classification
+accuracy; however, at least one nearest-neighbor classifier performed well.
 
 ## Convolutional neural network (CNN)
 The figure below shows training of a basic CNN with three convolutional layers
