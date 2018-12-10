@@ -84,9 +84,9 @@ inductors (H), diodes (D), LEDs (L), and integrated circuits (ICs). For each
 image in our dataset, we used [MATLAB's Image Labeler
 tool](https://www.mathworks.com/help/vision/ref/imagelabeler-app.html) to
 outline these components. The corresponding EAGLE PCB layout files served as our
-reference.  From the resulting `groundTruth` objects, we extracted bounding
-boxes and cropped each image to generate our actual dataset of component images
-and labels.
+reference. From the resulting `groundTruth` objects, we extracted bounding boxes
+and cropped each image to generate our actual dataset of component images and
+labels.
 
 ## Object Classification
 With our dataset generated, we moved onto the object classification problem.
@@ -133,6 +133,19 @@ With full five-fold cross-validation, we obtained an average classification
 accuracy of 83.2% for the above-described CNN model.
 
 # Conclusion
+
+
+Further work on the CNN, perhaps using a deeper network or one with more data
+available, could improve accuracy beyond the level that we obtained. More
+fine-tuning of the non-neural-network approaches would also be useful; while
+color was indeed a significant factor, perhaps the primary factor, in
+distinguishing components, additional work using spatial features could improve
+accuracy. For all methods we attempted, we did not try masking the components
+with anything other than rectangular bounding boxes, so the background colors
+around the components may or may not have been factors in the accuracies of the
+methods used. Pursuing automatic extraction of components would also be a useful
+future contribution; our current manual approach is not scalable to large data
+sets.
 
 # References
 
