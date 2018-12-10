@@ -1,7 +1,8 @@
 Visual analysis of the components on a printed circuit board (PCB) can provide
 additional security and quality assurance. For this reason, we decided to use
-computer vision techniques to classify PCB components by type (resistor,
-capacitor, etc.), achieving around 80% accuracy with the methodologies we tried.
+existing computer vision techniques to classify PCB components by type
+(resistor, capacitor, etc.), achieving around 80% accuracy with the
+methodologies we tried.
 
 ![Given picture and component bounding boxes, isolate components, and using CNN
 and other methods, classify!](figures/teaser.png)
@@ -14,8 +15,9 @@ supply chains are not necessarily secure. In that light, ensuring that the
 components on a PCB are only those that are supposed to be there can improve
 security guarantees and, more prosaically, be useful for quality-assurance
 purposes. For this reason, we investigated visual classification of the
-components on PCBs using photographs taken with standard cameras. Related work
-in this area includes defect analysis
+components on PCBs using photographs taken with standard cameras using
+off-the-shelf computer vision products. Related work in this area includes
+defect analysis
 [[1](https://research.ijcaonline.org/ncfaaiia/number2/ncfaaiia1014.pdf)]
 and identification of specific PCBs for recycling purposes
 [[2](https://cvl.tuwien.ac.at/project/reclaim/)].
@@ -133,19 +135,25 @@ With full five-fold cross-validation, we obtained an average classification
 accuracy of 83.2% for the above-described CNN model.
 
 # Conclusion
-
+Our acheivement of around 80% accuracy with the classification methodologies we
+used illustrates that relying on proven tools and algorithms for PCB analysis is
+a viable route. Whether for purposes of security or simply quality assurance,
+companies and other organizations do not have to spend large amounts of money or
+large amounts of time to achieve product introspection via computer vision.
 
 Further work on the CNN, perhaps using a deeper network or one with more data
-available, could improve accuracy beyond the level that we obtained. More
-fine-tuning of the non-neural-network approaches would also be useful; while
-color was indeed a significant factor, perhaps the primary factor, in
-distinguishing components, additional work using spatial features could improve
-accuracy. For all methods we attempted, we did not try masking the components
-with anything other than rectangular bounding boxes, so the background colors
-around the components may or may not have been factors in the accuracies of the
-methods used. Pursuing automatic extraction of components would also be a useful
-future contribution; our current manual approach is not scalable to large data
-sets.
+available, could improve accuracy beyond the level that we obtained with that
+approach. More fine-tuning of the non-neural-network approaches would also be
+useful; while color was indeed a significant factor, perhaps the primary factor,
+in distinguishing components, additional work using spatial features could
+improve accuracy. For all methods we attempted, we did not try masking the
+components with anything other than rectangular bounding boxes, so the
+background colors around the components may or may not have been factors in the
+accuracies of the methods used. Pursuing automatic extraction of components
+would also be a useful future contribution; our current manual approach is not
+scalable to large data sets. Higher-resolution images may also be useful for
+improved accuracy as they would provide additional per-component data points for
+the classification.
 
 # References
 
