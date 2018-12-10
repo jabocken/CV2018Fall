@@ -135,7 +135,7 @@ With full five-fold cross-validation, we obtained an average classification
 accuracy of 83.2% for the above-described CNN model.
 
 # Conclusion
-Our acheivement of around 80% accuracy with the classification methodologies we
+Our achievement of around 80% accuracy with the classification methodologies we
 used illustrates that relying on proven tools and algorithms for PCB analysis is
 a viable route. Whether for purposes of security or simply quality assurance,
 companies and other organizations do not have to spend large amounts of money or
