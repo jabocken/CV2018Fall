@@ -103,10 +103,8 @@ tool. Specifically, this tool trains and scores the following types of learners
 in parallel:
 
 * Decision Trees
-* Linear and Quadratic Discriminant Analysis
 * Support Vector Machines
 * Nearest-neighbor Classifiers
-* Ensemble Classifiers/
 
 The second approach used a convolutional neural network (CNN) implemented with
 [MatConvNet](http://www.vlfeat.org/matconvnet/)
@@ -127,7 +125,7 @@ images of components. The image files and `groundTruth` objects can be found
 [here](https://drive.google.com/file/d/1pnl0-c1Zyp0Ajidw2CLabZj_o_hSVzxi/view?usp=sharing);
 note that the name of each file corresponds to the product number at Adafruit.
 
-## Color histogram and k-nearest-neighbor search
+## Color histogram and Supervised Classifiers
 
 We computed color histograms for each component by taking a histogram of each
 color channel (RGB). We used 10 bins for each color. As the number of pixels in
@@ -137,26 +135,17 @@ a feature vector 30 elements long.
 
 We used these feature vectors to train a variety of different classifiers using
 MATLAB's Classification Learner tool. The tool was set to automatically perform
-5-fold cross-validation. The accuracy of the various classifiers is shown in the
-following table:
+5-fold cross-validation. The accuracies -- that is, the percentage of
+correctly-classified components in the test set, averaged across all 5 folds --
+of the various classifiers are shown below:
+![Classifier accuracies](figures/non-cnn-accuracy.png)
 
-Model Type | Model Subtype | Accuracy (%)
------------|---------------|---------
-SVM | Medium Gaussian | 86.0
-SVM | Quadratic | 85.5
-SVM | Cubic | 85.3
-KNN | Fine (K = 1) | 83.8
-SVM | Linear | 80.7
-KNN | Medium (K = 10) | 78.9
-Decision Tree | Fine (max 100 splits)| 74.6
-SVM | Coarse Gaussian | 73.7
-Decision Tree | Medium (max 20 splits) | 73.2
-Decision Tree | Coarse (max 4 splits) | 63.6
-SVM | Fine Gaussian | 50.2
-KNN | Coarse (K = 100) | 49.8
-
-In general, Support Vector Machines provided the highest classification
-accuracy; however, at least one nearest-neighbor classifier performed well.
+Overall, support vector machines provide the highest classification accuracy --
+the quadratic, cubic, and medium Gaussian kernels all perform about equally well
+with ~86% accuracies. The fine KNN classifier (K=1) also performed about as well
+as these three SVM models. Across the board, however, the finer the model's
+granularity, the less effective it was; this suggests a need for a larger or
+more descriptive feature set.
 
 ## Convolutional Neural Network
 The figure below shows training of the CNN used over 75 epochs. We used four
