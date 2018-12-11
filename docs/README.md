@@ -8,6 +8,7 @@ methodologies we tried.
 and other methods, classify!](figures/teaser.png)
 
 # Introduction
+
 [Recent events in the field of hardware security](https://www.bloomberg.com/news/features/2018-10-04/the-big-hack-how-china-used-a-tiny-chip-to-infiltrate-america-s-top-companies),
 [whether true or not](https://www.zdnet.com/article/super-micro-trashes-bloomberg-chip-hack-story-in-recent-customer-letter/),
 have shined light on the issue of ensuring hardware security in a world where
@@ -25,8 +26,8 @@ Such work extends back to at least the 90s as well
 [[3](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.39.2668&rep=rep1&type=pdf)].
 
 # Methodology
-
 ## Dataset Generation
+
 Before we could perform any form of object classification, we needed to find or
 generate a dataset of PCB components. We first searched for existing datasets.
 The only candidate we found in our search was the [PCB DSLR
@@ -93,6 +94,7 @@ iand labels. Examples of the resulting images are shown below:
 ![Example image from component extraction.](figures/component_samples.png)
 
 ## Object Classification
+
 With our dataset generated, we moved onto the object classification problem.
 After researching the various methods available, we settled on testing two
 different approaches and comparing the accuracies. The first approach generated
@@ -102,9 +104,10 @@ Learner](https://www.mathworks.com/help/stats/classificationlearner-app.html)
 tool. Specifically, this tool trains and scores the following types of learners
 in parallel:
 
-* Decision Trees
-* Support Vector Machines
-* Nearest-neighbor Classifiers
+* Decision Trees -- data features used in a trained tree search to classify
+* Support Vector Machines -- data separated by hyperplanes based on similarity
+* Nearest-neighbor Classifiers -- using nearest-neighbor voting to determine
+  similarity
 
 The second approach used a convolutional neural network (CNN) implemented with
 [MatConvNet](http://www.vlfeat.org/matconvnet/)
@@ -131,7 +134,7 @@ We computed color histograms for each component by taking a histogram of each
 color channel (RGB). We used 10 bins for each color. As the number of pixels in
 each component image varies, we then normalized the histograms for each channel
 such that the sum of the 10-bin vector equals 1. Together, these gave us
-a feature vector 30 elements long. 
+a feature vector 30 elements long.
 
 We used these feature vectors to train a variety of different classifiers using
 MATLAB's Classification Learner tool. The tool was set to automatically perform
@@ -148,6 +151,7 @@ granularity, the less effective it was; this suggests a need for a larger or
 more descriptive feature set.
 
 ## Convolutional Neural Network
+
 The figure below shows training of the CNN used over 75 epochs. We used four
 fifths of the component images, all resized to 32x32 and normalized on color
 values, for the training set and the remaining fifth as the validation set; in
@@ -161,6 +165,7 @@ With full five-fold cross-validation, we obtained an average classification
 accuracy of 83.2% for the above-described CNN model.
 
 # Conclusion
+
 Our achievement of around 80% accuracy with the classification methodologies we
 used illustrates that relying on proven tools and algorithms for PCB analysis is
 a viable route. Whether for purposes of security or simply quality assurance,
